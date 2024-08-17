@@ -61,7 +61,7 @@ jobs:
       - name: Add safe directory
         run: git config --global --add safe.directory /github/workspace
       - name: Push new ride
-        uses: github-actions-x/commit@v2.6
+        uses: github-actions-x/commit@v3.6
         with:
           github-token: ${{ secrets.ACCESS_TOKEN }}
           commit-message: "Add new rides"
