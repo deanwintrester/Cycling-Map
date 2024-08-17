@@ -58,6 +58,8 @@ jobs:
       # - name: Run sync Strava script
       #   run: |
       #     python scripts/strava_sync.py ${{ secrets.STRAVA_CLIENT_ID }} ${{ secrets.STRAVA_CLIENT_SECRET }} ${{ secrets.STRAVA_CLIENT_REFRESH_TOKEN }}
+      - name: Add safe directory
+        run: git config --global --add safe.directory /github/workspace
       - name: Push new ride
         uses: github-actions-x/commit@v2.6
         with:
