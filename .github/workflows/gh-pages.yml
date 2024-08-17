@@ -92,6 +92,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 16
       
       - run: |
           node script.js '${{ github.event.inputs.latitude }}' '${{ github.event.inputs.longitude }}' '${{ github.event.inputs.address }}' '${{ github.event.inputs.time }}'
