@@ -26,7 +26,11 @@ on:
         description: 'Address'
       time:
         description: 'Time'
-
+env:
+  RUN_TYPE: coros # support strava/coros/keep
+  ATHLETE: Dean Dao
+  GITHUB_NAME: deanwintrester # change to yours
+  GITHUB_EMAIL: dean189340@gmail.com # change to yours
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -76,14 +80,14 @@ jobs:
       
       - run: |
           node script.js '${{ github.event.inputs.latitude }}' '${{ github.event.inputs.longitude }}' '${{ github.event.inputs.address }}' '${{ github.event.inputs.time }}'
-      - name: Push new ride
-        uses: github-actions-x/commit@v2.6
-        with:
-          github-token: ${{ secrets.ACCESS_TOKEN }}
-          commit-message: "Add new rides"
-          rebase: 'true'
-          name: 'GitHub Action'
-          email: 'actions@github.com'
+      - name: Push new runs
+        if: env.SAVE_DATA_IN_GITHUB_CACHE != 'true'
+        run: |
+          git config --local user.email "${{ env.GITHUB_EMAIL }}"
+          git config --local user.name "${{ env.GITHUB_NAME }}"
+          git add .
+          git commit -m 'update new runs' || echo "nothing to commit"
+          git push || echo "nothing to push"
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
