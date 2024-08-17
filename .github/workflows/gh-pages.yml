@@ -65,7 +65,7 @@ jobs:
       - name: Add safe directory
         run: git config --global --add safe.directory /github/workspace
       - name: Push new ride
-        uses: github-actions-x/commit@v3.6
+        uses: github-actions-x/commit@v2.6
         with:
           github-token: ${{ secrets.ACCESS_TOKEN }}
           commit-message: "Add new rides"
@@ -80,14 +80,14 @@ jobs:
       
       - run: |
           node script.js '${{ github.event.inputs.latitude }}' '${{ github.event.inputs.longitude }}' '${{ github.event.inputs.address }}' '${{ github.event.inputs.time }}'
-      - name: Push new runs
-        if: env.SAVE_DATA_IN_GITHUB_CACHE != 'true'
-        run: |
-          git config --local user.email "${{ env.GITHUB_EMAIL }}"
-          git config --local user.name "${{ env.GITHUB_NAME }}"
-          git add .
-          git commit -m 'update new runs' || echo "nothing to commit"
-          git push || echo "nothing to push"
+      # - name: Push new runs
+      #   if: env.SAVE_DATA_IN_GITHUB_CACHE != 'true'
+      #   run: |
+      #     git config --local user.email "${{ env.GITHUB_EMAIL }}"
+      #     git config --local user.name "${{ env.GITHUB_NAME }}"
+      #     git add .
+      #     git commit -m 'update new runs' || echo "nothing to commit"
+      #     git push || echo "nothing to push"
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
