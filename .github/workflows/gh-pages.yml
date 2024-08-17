@@ -73,6 +73,11 @@ jobs:
       #     rebase: 'true'
       #     name: 'GitHub Action'
       #     email: 'actions@github.com'
+      - name: Set Node.js options
+        run: |
+          echo "NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV
+
+      
       - name: Push new runs
         if: env.SAVE_DATA_IN_GITHUB_CACHE != 'true'
         run: |
