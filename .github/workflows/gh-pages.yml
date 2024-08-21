@@ -81,7 +81,7 @@ jobs:
           ls -ld $GITHUB_WORKSPACE
       
       - name: Push new ride
-        uses: github-actions-x/commit@v5.2
+        uses: github-actions-x/commit@v5
         with:
           github-token: ${{ secrets.ACCESS_TOKEN }}
           commit-message: "Add new rides"
