@@ -69,16 +69,16 @@ jobs:
 
       - name: Check and set repository ownership
         run: |
-          # 检查当前所有权
-          echo "Current ownership of /github/workspace:"
-          ls -ld /github/workspace
+          # 使用环境变量检查当前所有权
+          echo "Current ownership of $GITHUB_WORKSPACE:"
+          ls -ld $GITHUB_WORKSPACE
       
           # 切换到runner用户，这通常是GitHub Actions的运行器用户
-          sudo chown -R $(whoami) /github/workspace
+          sudo chown -R $(whoami) $GITHUB_WORKSPACE
       
           # 再次检查所有权以确认更改
-          echo "Updated ownership of /github/workspace:"
-          ls -ld /github/workspace
+          echo "Updated ownership of $GITHUB_WORKSPACE:"
+          ls -ld $GITHUB_WORKSPACE
       
       - name: Push new ride
         uses: github-actions-x/commit@v2.6
