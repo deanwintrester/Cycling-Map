@@ -97,6 +97,7 @@ jobs:
       - name: Set Node.js options
         run: |
           echo "NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV
+        shell: bash
 
           
       - name: Get yarn cache directory path
